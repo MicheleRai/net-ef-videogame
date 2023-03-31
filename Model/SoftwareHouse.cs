@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace net_ef_videogame.Model
 {
+    [Table("softwareHouse")]
     public class SoftwareHouse
     {
         public int Id { get; set; }

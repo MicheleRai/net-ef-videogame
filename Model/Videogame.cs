@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace net_ef_videogame.Model
 {
-    [Table("Videogame")]
-
-    [Index(nameof(Id), IsUnique = true )]
+    [Table("videogame")]
     public class Videogame
     {
         public int Id { get; set; }

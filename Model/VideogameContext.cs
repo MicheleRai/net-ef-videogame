@@ -15,7 +15,7 @@ namespace net_ef_videogame
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=net-ef-videogameDB;Integrated Security=True Encrypt=False");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=net-ef-videogameDB;Integrated Security=True; Encrypt=False");
         }
     }
 }
