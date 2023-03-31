@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using net_ef_videogame;
 
 #nullable disable
 
@@ -22,66 +21,64 @@ namespace net_ef_videogame.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("net_ef_videogame.Model.SoftwareHouse", b =>
+            modelBuilder.Entity("SoftwareHouse", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Citta")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nazione")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("NumeroPIva")
                         .HasColumnType("bigint");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Citta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("Iva")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Paese")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("SoftwareHouses");
+                    b.ToTable("SoftwareHouse");
                 });
 
-            modelBuilder.Entity("net_ef_videogame.Model.Videogame", b =>
+            modelBuilder.Entity("Videogame", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Overview")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ReleaseDate")
+                    b.Property<DateTime>("DataUscita")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SoftwareHouseId")
-                        .HasColumnType("int");
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SoftwareHouseId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Trama")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("SoftwareHouseId");
 
-                    b.ToTable("Videogames");
+                    b.ToTable("videogames");
                 });
 
-            modelBuilder.Entity("net_ef_videogame.Model.Videogame", b =>
+            modelBuilder.Entity("Videogame", b =>
                 {
-                    b.HasOne("net_ef_videogame.Model.SoftwareHouse", "SoftwareHouse")
+                    b.HasOne("SoftwareHouse", "SoftwareHouse")
                         .WithMany("Videogames")
                         .HasForeignKey("SoftwareHouseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -90,7 +87,7 @@ namespace net_ef_videogame.Migrations
                     b.Navigation("SoftwareHouse");
                 });
 
-            modelBuilder.Entity("net_ef_videogame.Model.SoftwareHouse", b =>
+            modelBuilder.Entity("SoftwareHouse", b =>
                 {
                     b.Navigation("Videogames");
                 });

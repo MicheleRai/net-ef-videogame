@@ -1,21 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using net_ef_videogame.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace net_ef_videogame
+public class VideogameContext : DbContext
 {
-    public class VideogameContext : DbContext
-    {
-        public DbSet<Videogame> Videogames { get; set; }
-        public DbSet<SoftwareHouse> SoftwareHouses { get; set; }
+    public DbSet<Videogame> Videogames { get; set; }
+    public DbSet<SoftwareHouse> SoftwareHouse { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=net-ef-videogameDB;Integrated Security=True; Encrypt=False");
-        }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=videogameTestdb;Integrated Security=True; Encrypt = false;");
     }
+
 }
